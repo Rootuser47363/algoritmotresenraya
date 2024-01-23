@@ -1,0 +1,60 @@
+Algoritmo TresEnRaya
+	Definir tablero[3,3] de Entero
+	Definir jugador Como Caracter
+	Definir i, j Como Entero
+	Para i <- 1 Hasta 3 Hacer
+		Para j <- 1 Hasta 3 Hacer
+			tablero[i,j] <- ' '
+		FinPara
+	FinPara
+	jugador <- 'X'
+	Mientras Verdadero Hacer
+		Escribir 'El tablero actual es:'
+		Para i <- 1 Hasta 3 Hacer
+			Escribir tablero[i,1] + ' | ' + tablero[i,2] + ' | ' + tablero[i,3]
+			Si i < 3 Entonces
+				Escribir '---------'
+			FinSi
+		FinPara
+		Si jugador = 'X' Entonces
+			Escribir 'Jugador X, introduce la fila (1-3):'
+			Leer i
+			Escribir 'Jugador X, introduce la columna (1-3):'
+			Leer j
+			tablero[i,j] <- 'X'
+			Si verificar_ganador(tablero) Entonces
+				Escribir '¡Felicidades, has ganado!'
+				Terminar
+			FinSi
+			jugador <- 'O'
+		Sino
+			Mientras Verdadero Hacer
+				i <- Aleatorio(1,3)
+				j <- Aleatorio(1,3)
+				Si tablero[i,j] = ' ' Entonces
+					tablero[i,j] <- 'O'
+					Si verificar_ganador(tablero) Entonces
+						Escribir 'La computadora ha ganado.'
+						Terminar
+					FinSi
+					jugador <- 'X'
+					Terminar
+				FinSi
+			FinMientras
+		FinSi
+	FinMientras
+FinAlgoritmo
+
+Algoritmo verificar_ganador
+	Definir tablero[3,3] de Entero
+	Definir i Como Entero
+	Para i <- 1 Hasta 3 Hacer
+		Si tablero[i,1] = tablero[i,2] = tablero[i,3] <> ' ' O tablero[1,i] = tablero[2,i] = tablero[3,i] <> ' ' Entonces
+			Retornar Verdadero
+		FinSi
+	FinPara
+	Si tablero[1,1] = tablero[2,2] = tablero[3,3] <> ' ' O tablero[1,3] = tablero[2,2] = tablero[3,1] <> ' ' Entonces
+		Retornar Verdadero
+	FinSi
+	Retornar Falso
+FinAlgoritmo
